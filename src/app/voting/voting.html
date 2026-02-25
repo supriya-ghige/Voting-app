@@ -1,0 +1,38 @@
+<div class="container mt-4">
+    <h2 class="text-center">Create Poll</h2>
+    <div class="mb-3">
+        <input [(ngModel)]="newPoll.question" placeholder="Poll Question" class="form-control" required="" />
+
+    </div>
+    <div class="options-container mb-3">
+        @for (item of newPoll.options; track $index) {
+        <div class="mb-2">
+            <input [(ngModel)]="item.voteOption" placeholder="option" class="form-control" required />
+        </div>
+        }
+    </div>
+
+    <button (click)="addOptions()" class="btn btn-warning">Add Options</button>
+    <button (click)="createPoll()" class="btn btn-success">Create Poll</button>
+    <!-- <button (click)="resetPoll()" class="btn btn-warning">Reset</button> -->
+
+    <h2 class="mt-4 text-center">Avilable Polls</h2>
+    <diV>
+        <div class="polls-list">
+            @for (item of polls; track $index) {
+            <div class="border rounded p-3 mb-3">
+                <h1>{{item.question}} </h1>
+                <div class="options-list">
+                    @for (it of item.options; track $index) {
+                    <div>
+                        <button (click)="vote(item.id, $index)" class="btn btn-outline-primary me-2 mt-2">{{it.voteOption}} ({{it.voteCount}} votes)
+                        </button>
+                    </div>
+                    }
+                </div>
+
+            </div>
+            }
+        </div>
+    </diV>
+</div>
